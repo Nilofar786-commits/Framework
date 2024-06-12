@@ -12,10 +12,7 @@ import com.learnautomation.utilities.Helper;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,11 +39,13 @@ public class BaseClass {
         Reporter.log("**********Test can be started************",true);
     }
 
+   @Parameters({"browser"})
     @BeforeClass
-    public void startup()
+    public void startup(String browser)
     {
         Reporter.log("Strtaed browser***********");
-        driver= BrowserFactory.startApplication(driver,co.getBrowser(),co.getStagingURL());
+       // driver= BrowserFactory.startApplication(driver,co.getBrowser(),co.getStagingURL());
+        driver= BrowserFactory.startApplication(driver,browser,co.getStagingURL());
         Reporter.log("browser and application started***********");
     }
 
